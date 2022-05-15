@@ -16,7 +16,7 @@ public class UserExistsMiddleware extends Middleware{
     }
    
     @Override
-    public boolean check(String nome, String senha) {
+    public boolean check(String nome, String senha, String cod) {
         if (!servidor.possuiNome(nome)) {
             System.out.println("Nome invalido!");
             return false;
@@ -25,7 +25,9 @@ public class UserExistsMiddleware extends Middleware{
             System.out.println("Senha invalida!");
             return false;
         }
-        return checkNext(nome, senha);
+        return checkNext(nome, senha, cod);
     }
+
+ 
     
 }

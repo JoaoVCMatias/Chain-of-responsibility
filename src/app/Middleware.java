@@ -15,13 +15,13 @@ public abstract class Middleware {
         this.proximo = proximo;
         return proximo;
     }
-    public abstract boolean check(String nome, String senha);
+    public abstract boolean check(String nome, String senha, String cod);
     
-    protected boolean checkNext(String nome, String senha) {
+    protected boolean checkNext(String nome, String senha, String cod) {
         if (proximo == null) {
             return true;
         }
-        return proximo.check(nome, senha);
+        return proximo.check(nome, senha, cod);
     }
      
 }
