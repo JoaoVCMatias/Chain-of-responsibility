@@ -18,12 +18,12 @@ public class CourseMiddleware extends Middleware {
     }
     
     @Override
-    public boolean check(String nome, String senha, String cod) {
+    public boolean check(String nome, String senha, String cod) { //Faz a verificaçao de se o usuario pode acessar o conteudo
         boolean aux = checkFree();
         if(!aux){
-            if(servidor.getUsuariosPagantes().get(nome) != null){
-                if(!checkPrata(nome)){
-                    if(!checkOuro(nome)){
+            if(servidor.getUsuariosPagantes().get(nome) != null){ //Verifica se faz parte dos pagantes
+                if(!checkPrata(nome)){ //Verifica se ele é prata e se ele pode acessar o conteudo
+                    if(!checkOuro(nome)){//Verifica se ele é ouro e se ele pode acessar o conteudo
                         System.out.println("Eleve seu plano para acessar o curso: " + this.curso);
                         return checkNext(nome, senha, cod);
                     }
@@ -42,7 +42,7 @@ public class CourseMiddleware extends Middleware {
         return false;
     }
     public boolean checkPrata(String nome){
-        if(servidor.getUsuariosPagantes().get(nome).equals("Prata")){
+        if(servidor.getUsuariosPagantes().get(nome).equals("Prata") || servidor.getUsuariosPagantes().get(nome).equals("Ouro")){
             if(servidor.getCursosOferecidos().get(curso).equals("Prata")){
                 System.out.println("Curso: " + curso + " liberado com sucesso");
                 return true;

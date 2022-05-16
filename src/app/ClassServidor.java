@@ -22,13 +22,14 @@ public class ClassServidor {
     }
     
     public boolean logIn(String nome, String senha, String cod) {
-        if (middleware.check(nome, senha, cod)) {
+        if (middleware.check(nome, senha, cod)) { //Função que vai analisar se o usuario é valido em UserExistsMiddleware
             System.out.println("Usuario valido");
             return true;
         }
         return false;
     }
-    public boolean checkCursos(String nome, String senha, String cod){
+    
+    public boolean checkCursos(String nome, String senha, String cod){ //CheckCursos chama o check do CourseExistsMiddleware
         if (middleware.check(nome, senha, cod)) {
             return true;
         }
@@ -81,7 +82,7 @@ public class ClassServidor {
     public String planoUsuario(String nome){
         return usuariosPagantes.get(nome);
     }
-    public Boolean usuarioValido(String nome, String senha){
+    public Boolean usuarioValido(String nome, String senha){ //Valida usuario (chave/valor)
         return usuarios.get(nome).equals(senha);
     }
     public void getUsuarios(){

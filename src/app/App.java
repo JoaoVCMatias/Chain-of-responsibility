@@ -37,9 +37,10 @@ public class App {
         }
     }
     private static void acessarServidor(String nome, String senha, String cod){
+        //Cria o objeto middleware com as requisições nescessarias para acessar os dados
         Middleware middleware = new UserExistsMiddleware(servidor);
         middleware.linkWith(new ValidatorMiddleware(Integer.toString(codGerado)));
-        servidor.setMiddleware(middleware);
+        servidor.setMiddleware(middleware); //Atribui ao servidor as requisições
         if(servidor.logIn(nome, senha, cod)){
             acessarConteudos(nome, senha, cod);
         }
@@ -50,10 +51,8 @@ public class App {
     }
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        Servidor();
-        rn = new Random();
-        //servidor.getUsuarios();
+        Servidor(); //Instacia o servidor
+        rn = new Random(); //Objeto para tirar o codigo random 
         while(true){
             System.out.println("Digite seu nome: ");
             String nome = teclado.next();
@@ -62,7 +61,7 @@ public class App {
             codGerado = rn.nextInt(1000)+100;
             System.out.println("Digite o código que aparece na tela: " + codGerado);
             String cod = teclado.next();
-            acessarServidor(nome,senha,cod);
+            acessarServidor(nome,senha,cod); //Chama a função para acessar o servidor
             System.out.println("Deseja sair?(s/n)");
             if(teclado.next().equals("s")){
                 break;
